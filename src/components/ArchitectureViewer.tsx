@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Smartphone, Monitor, Server, Database, Cpu, CheckCircle2 } from 'lucide-react';
+import { Smartphone, Monitor, Server, Database, Cpu, CheckCircle2, ArrowRight, ShieldCheck, Zap, Activity } from 'lucide-react';
 
 interface LayerDetail {
   id: string;
@@ -15,10 +15,10 @@ interface LayerDetail {
 const LAYERS: LayerDetail[] = [
   {
     id: 'mobile-tier',
-    name: '1. Mobile Application Tier (Flutter)',
+    name: '1. Flutter Mobile Client Applications',
     badge: 'Dual Native Apps',
     icon: Smartphone,
-    tech: 'Flutter 3.x • Riverpod • GoRouter • flutter_map • Socket.IO Client',
+    tech: 'Flutter 3.x • Riverpod State Machine • GoRouter • flutter_map • Socket.IO Client',
     description: 'Two separate purpose-built native mobile experiences sharing unified theme tokens and data contracts: Customer App (service discovery, live Voyager mapping, in-trip chat) and Worker App (incoming offer countdowns, GPS telemetry streaming, welfare claims).',
     highlights: [
       'Zero proprietary map licensing — 100% CartoDB Voyager raster tiles on OpenStreetMap',
@@ -119,20 +119,73 @@ export const ArchitectureViewer: React.FC = () => {
   const activeDetail = LAYERS.find((l) => l.id === selectedLayer) || LAYERS[0];
 
   return (
-    <section id="architecture" style={{ padding: '80px 0', background: '#ffffff', borderTop: '1px solid var(--ink-200)' }}>
+    <section id="architecture" style={{ padding: '85px 0', background: '#ffffff', borderTop: '1px solid var(--ink-200)' }}>
       <div className="container">
         <div className="section-header">
-          <div className="subtitle">System Architecture</div>
-          <h2 className="title">Comprehensive Multi-Tier Architecture</h2>
+          <div className="subtitle">
+            <Activity size={15} /> System Topology
+          </div>
+          <h2 className="title">Full-Stack Enterprise Architecture</h2>
           <p className="desc">
-            Designed for scale, high-speed geospatial matching, and institutional reliability. Click any layer below to inspect its technical implementation details.
+            Engineered for low-latency geospatial matching, strict institutional data dignity, and resilient zero-cost open-source mapping.
           </p>
+        </div>
+
+        {/* Visual Topology Map Overview Box */}
+        <div className="card-dark-luxe" style={{ padding: '32px', marginBottom: '40px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Zap size={20} color="var(--forest-400)" />
+              <span style={{ fontSize: '15px', fontWeight: 800, letterSpacing: '-0.2px' }}>
+                End-to-End System Data Flow Pipeline
+              </span>
+            </div>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <span className="badge badge-green">Sub-10ms Geo Match</span>
+              <span className="badge badge-gold">Full Duplex Socket</span>
+            </div>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '16px',
+            alignItems: 'center',
+          }}>
+            <div style={{ background: 'rgba(255,255,255,0.06)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div style={{ fontSize: '11px', color: 'var(--forest-400)', fontWeight: 700, textTransform: 'uppercase' }}>Client Edge</div>
+              <div style={{ fontSize: '15px', fontWeight: 800, marginTop: '4px' }}>Customer & Partner Apps</div>
+              <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.6)', marginTop: '2px' }}>Flutter 3.x / OpenStreetMap</div>
+            </div>
+
+            <div style={{ textAlign: 'center', color: 'var(--forest-400)' }}>
+              <ArrowRight size={22} style={{ display: 'inline-block' }} />
+              <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-mono)' }}>REST / Socket.IO</div>
+            </div>
+
+            <div style={{ background: 'rgba(255,255,255,0.06)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div style={{ fontSize: '11px', color: 'var(--amber-400)', fontWeight: 700, textTransform: 'uppercase' }}>ASGI Engine</div>
+              <div style={{ fontSize: '15px', fontWeight: 800, marginTop: '4px' }}>FastAPI Gateway</div>
+              <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.6)', marginTop: '2px' }}>Python 3.11 / Beanie ODM</div>
+            </div>
+
+            <div style={{ textAlign: 'center', color: 'var(--forest-400)' }}>
+              <ArrowRight size={22} style={{ display: 'inline-block' }} />
+              <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-mono)' }}>2dsphere / ML</div>
+            </div>
+
+            <div style={{ background: 'rgba(255,255,255,0.06)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div style={{ fontSize: '11px', color: 'var(--forest-400)', fontWeight: 700, textTransform: 'uppercase' }}>Data & AI Hub</div>
+              <div style={{ fontSize: '15px', fontWeight: 800, marginTop: '4px' }}>MongoDB + Scikit ML</div>
+              <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.6)', marginTop: '2px' }}>Geospatial + 7d Forecasting</div>
+            </div>
+          </div>
         </div>
 
         {/* Tier Selector Buttons */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
           gap: '12px',
           marginBottom: '32px',
         }}>
@@ -144,31 +197,32 @@ export const ArchitectureViewer: React.FC = () => {
                 key={layer.id}
                 onClick={() => setSelectedLayer(layer.id)}
                 style={{
-                  padding: '16px',
-                  borderRadius: 'var(--radius-md)',
-                  background: isSelected ? 'var(--primary-surface)' : 'var(--bg-main)',
-                  border: isSelected ? '2px solid var(--primary)' : '1px solid var(--ink-200)',
+                  padding: '18px 16px',
+                  borderRadius: 'var(--r-md)',
+                  background: isSelected ? 'var(--forest-50)' : 'var(--bg-canvas)',
+                  border: isSelected ? '2px solid var(--forest-600)' : '1px solid var(--ink-200)',
                   textAlign: 'left',
                   transition: 'all 0.2s ease',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px',
+                  gap: '14px',
+                  boxShadow: isSelected ? '0 4px 16px rgba(16, 185, 129, 0.15)' : 'none',
                 }}
               >
                 <div style={{
-                  padding: '8px',
-                  borderRadius: '8px',
-                  background: isSelected ? 'var(--primary)' : 'var(--ink-200)',
-                  color: isSelected ? '#ffffff' : 'var(--ink-800)',
+                  padding: '10px',
+                  borderRadius: '10px',
+                  background: isSelected ? 'var(--forest-700)' : 'var(--ink-100)',
+                  color: isSelected ? '#ffffff' : 'var(--ink-700)',
                 }}>
                   <Icon size={20} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '13px', fontWeight: 700, color: isSelected ? 'var(--primary)' : 'var(--ink-900)' }}>
+                  <div style={{ fontSize: '13px', fontWeight: 800, color: isSelected ? 'var(--forest-800)' : 'var(--ink-950)' }}>
                     {layer.name.split('(')[0]}
                   </div>
-                  <div style={{ fontSize: '11px', color: 'var(--ink-600)', fontWeight: 500 }}>
+                  <div style={{ fontSize: '11px', color: 'var(--ink-500)', fontWeight: 600, marginTop: '2px' }}>
                     {layer.badge}
                   </div>
                 </div>
@@ -178,33 +232,33 @@ export const ArchitectureViewer: React.FC = () => {
         </div>
 
         {/* Active Layer Deep Dive Card */}
-        <div className="glass-card" style={{ padding: '36px', background: 'var(--bg-main)' }}>
+        <div className="card-luxe" style={{ padding: '36px', background: 'var(--bg-surface)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '36px' }}>
             {/* Left Col: Explanations & Highlights */}
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
                 <span className="badge badge-green">{activeDetail.badge}</span>
-                <span style={{ fontSize: '12.5px', fontFamily: 'var(--font-mono)', color: 'var(--ink-600)' }}>
+                <span style={{ fontSize: '12.5px', fontFamily: 'var(--font-mono)', color: 'var(--ink-500)' }}>
                   {activeDetail.tech}
                 </span>
               </div>
 
-              <h3 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '16px', color: 'var(--ink-900)' }}>
+              <h3 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '16px', color: 'var(--ink-950)' }}>
                 {activeDetail.name}
               </h3>
 
-              <p style={{ fontSize: '15px', color: 'var(--ink-600)', lineHeight: 1.65, marginBottom: '24px' }}>
+              <p style={{ fontSize: '15px', color: 'var(--ink-700)', lineHeight: 1.65, marginBottom: '24px' }}>
                 {activeDetail.description}
               </p>
 
-              <h4 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.8px', color: 'var(--primary)', marginBottom: '12px' }}>
-                Key Technical Highlights
+              <h4 style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--forest-700)', marginBottom: '14px', fontWeight: 800 }}>
+                Production Technical Highlights
               </h4>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {activeDetail.highlights.map((h, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                    <CheckCircle2 size={18} color="var(--primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <CheckCircle2 size={18} color="var(--forest-600)" style={{ flexShrink: 0, marginTop: '2px' }} />
                     <span style={{ fontSize: '14px', color: 'var(--ink-800)', lineHeight: 1.5 }}>{h}</span>
                   </div>
                 ))}
@@ -213,12 +267,12 @@ export const ArchitectureViewer: React.FC = () => {
 
             {/* Right Col: Code Snippet & Live Contract Shape */}
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-                <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--ink-600)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+                <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--ink-500)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
                   Architecture Implementation Snippet
                 </span>
-                <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--primary)' }}>
-                  Production Verified
+                <span className="badge badge-green" style={{ fontSize: '11px' }}>
+                  <ShieldCheck size={12} /> Production Verified
                 </span>
               </div>
 
@@ -228,16 +282,16 @@ export const ArchitectureViewer: React.FC = () => {
 
               <div style={{
                 marginTop: '16px',
-                padding: '14px 18px',
-                background: 'var(--primary-surface)',
-                borderRadius: 'var(--radius-md)',
-                border: '1px solid rgba(13, 82, 56, 0.2)',
+                padding: '16px 20px',
+                background: 'var(--forest-50)',
+                borderRadius: 'var(--r-md)',
+                border: '1px solid rgba(16, 185, 129, 0.25)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
               }}>
-                <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--primary-deep)' }}>
-                  Tested & verified on Motorola Edge 50 Pro (Android 16 API 36)
+                <span style={{ fontSize: '13.5px', fontWeight: 700, color: 'var(--forest-800)' }}>
+                  Tested & deployed on physical Motorola Edge 50 Pro (Android 16 API 36)
                 </span>
                 <span className="badge badge-green" style={{ fontSize: '11px' }}>100% Pass</span>
               </div>

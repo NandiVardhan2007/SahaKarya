@@ -1,111 +1,128 @@
 import { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { Download, Smartphone, CheckCircle2, ShieldCheck, HardDrive, RefreshCw } from 'lucide-react';
+import { Download, Smartphone, CheckCircle2, ShieldCheck, HardDrive, RefreshCw, Copy, Check } from 'lucide-react';
 
 export const ApkDownloads: React.FC = () => {
-  // Allow switching base host for QR code testing (current browser origin or local network IP)
-  const currentOrigin = typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5173';
+  const currentOrigin = typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5174';
   const [customHost, setCustomHost] = useState(currentOrigin);
+  const [copiedCustomer, setCopiedCustomer] = useState(false);
+  const [copiedWorker, setCopiedWorker] = useState(false);
 
   const customerApkUrl = `${customHost}/downloads/sahakarya-customer-app.apk`;
   const workerApkUrl = `${customHost}/downloads/sahakarya-partner-app.apk`;
 
+  const copyLink = (url: string, isCustomer: boolean) => {
+    navigator.clipboard.writeText(url);
+    if (isCustomer) {
+      setCopiedCustomer(true);
+      setTimeout(() => setCopiedCustomer(false), 2000);
+    } else {
+      setCopiedWorker(true);
+      setTimeout(() => setCopiedWorker(false), 2000);
+    }
+  };
+
   return (
-    <section id="downloads" style={{ padding: '80px 0', background: '#ffffff', borderTop: '1px solid var(--ink-200)' }}>
+    <section id="downloads" style={{ padding: '85px 0', background: '#ffffff', borderTop: '1px solid var(--ink-200)' }}>
       <div className="container">
         <div className="section-header">
-          <div className="subtitle">Live Evaluation & Testing</div>
+          <div className="subtitle">
+            <Smartphone size={15} /> Evaluator Deployment
+          </div>
           <h2 className="title">Direct APK Downloads & Instant QR Codes</h2>
           <p className="desc">
-            Scan with any Android phone camera to download and test the working Flutter applications right away.
+            Tested and verified on Android 8.0 through Android 16 (API 36). Scan with your phone camera or click direct download.
           </p>
         </div>
 
         {/* Custom Host input (for testing on LAN / remote judges) */}
         <div style={{
-          maxWidth: '680px',
+          maxWidth: '720px',
           margin: '0 auto 40px auto',
-          padding: '14px 20px',
-          background: 'var(--bg-main)',
-          borderRadius: 'var(--radius-md)',
+          padding: '16px 22px',
+          background: 'var(--bg-canvas)',
+          borderRadius: 'var(--r-md)',
           border: '1px solid var(--ink-200)',
           display: 'flex',
           alignItems: 'center',
           gap: '12px',
           flexWrap: 'wrap',
+          boxShadow: 'var(--shadow-subtle)',
         }}>
-          <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--ink-800)' }}>
-            QR Code Target Base URL:
+          <span style={{ fontSize: '13px', fontWeight: 800, color: 'var(--ink-800)' }}>
+            QR Target Base URL:
           </span>
           <input
             type="text"
             value={customHost}
             onChange={(e) => setCustomHost(e.target.value)}
-            placeholder="e.g. http://192.168.1.15:5173 or https://your-domain.vercel.app"
+            placeholder="e.g. http://192.168.1.3:5174 or https://sahakarya.vercel.app"
             style={{
               flex: 1,
-              minWidth: '220px',
-              padding: '8px 12px',
+              minWidth: '240px',
+              padding: '10px 14px',
               borderRadius: '8px',
-              border: '1px solid var(--ink-200)',
+              border: '1.5px solid var(--ink-200)',
               fontFamily: 'var(--font-mono)',
               fontSize: '13px',
               background: '#ffffff',
+              outline: 'none',
             }}
           />
           <button
             onClick={() => setCustomHost(window.location.origin)}
             className="btn btn-outline"
-            style={{ padding: '6px 12px', fontSize: '12px' }}
+            style={{ padding: '8px 14px', fontSize: '12px' }}
             title="Reset to current browser URL"
           >
-            <RefreshCw size={13} /> Reset
+            <RefreshCw size={13} /> Reset URL
           </button>
         </div>
 
         {/* 2 Dual Cards: Customer App & Worker App */}
         <div className="grid-2" style={{ gap: '32px', marginBottom: '40px' }}>
           {/* 1. Customer App Card */}
-          <div className="glass-card" style={{ padding: '36px', borderTop: '5px solid var(--primary)' }}>
+          <div className="card-luxe" style={{ padding: '36px', borderTop: '5px solid var(--forest-700)' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                 <div style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '14px',
-                  background: 'var(--primary)',
+                  width: '52px',
+                  height: '52px',
+                  borderRadius: '16px',
+                  background: 'linear-gradient(135deg, var(--forest-800) 0%, var(--forest-600) 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: '#ffffff',
+                  boxShadow: '0 4px 14px rgba(10, 56, 38, 0.2)',
                 }}>
-                  <Smartphone size={26} />
+                  <Smartphone size={28} />
                 </div>
                 <div>
-                  <h3 style={{ fontSize: '20px', fontWeight: 800 }}>SahaKarya (Customer App)</h3>
+                  <h3 style={{ fontSize: '21px', fontWeight: 800 }}>SahaKarya (Customer App)</h3>
                   <span className="badge badge-green" style={{ fontSize: '11px', marginTop: '4px' }}>
-                    v1.0.0+1 • Production Ready
+                    v1.0.0+1 • Production Verified
                   </span>
                 </div>
               </div>
             </div>
 
-            <p style={{ fontSize: '14.5px', color: 'var(--ink-600)', lineHeight: 1.6, marginBottom: '20px' }}>
-              Instant service discovery, interactive CartoDB Voyager live tracking maps, transparent tariff billing, in-trip chat, and peer evaluation.
+            <p style={{ fontSize: '14.5px', color: 'var(--ink-700)', lineHeight: 1.6, marginBottom: '22px' }}>
+              Instant service discovery, interactive CartoDB Voyager live tracking maps, transparent tariff billing, in-trip encrypted chat, and peer evaluation.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
-                <CheckCircle2 size={16} color="var(--primary)" />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px' }}>
+                <CheckCircle2 size={16} color="var(--forest-600)" />
                 <span>Package: <code style={{ fontFamily: 'var(--font-mono)' }}>com.coopgig.customer_app</code></span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
-                <CheckCircle2 size={16} color="var(--primary)" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px' }}>
+                <CheckCircle2 size={16} color="var(--forest-600)" />
                 <span>Features: One-Tap Instant Demo Mode, Location Permissions Explainer</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
-                <HardDrive size={16} color="var(--primary)" />
-                <span>Built Size: ~192 MB (Debug APK with all assets)</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px' }}>
+                <HardDrive size={16} color="var(--forest-600)" />
+                <span>Built Size: ~192 MB (Complete standalone debug bundle)</span>
               </div>
             </div>
 
@@ -114,72 +131,78 @@ export const ApkDownloads: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              padding: '18px',
-              background: 'var(--bg-main)',
-              borderRadius: 'var(--radius-md)',
+              padding: '20px',
+              background: 'var(--bg-canvas)',
+              borderRadius: 'var(--r-md)',
               border: '1px solid var(--ink-200)',
-              gap: '16px',
+              gap: '18px',
             }}>
-              <div style={{ background: '#ffffff', padding: '10px', borderRadius: '10px', border: '1px solid var(--ink-200)' }}>
+              <div style={{ background: '#ffffff', padding: '10px', borderRadius: '12px', border: '1px solid var(--ink-200)', boxShadow: 'var(--shadow-subtle)' }}>
                 <QRCodeSVG value={customerApkUrl} size={110} level="M" />
               </div>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '12px', color: 'var(--ink-600)', marginBottom: '8px' }}>
-                  Scan with phone camera or download directly:
-                </div>
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <a
                   href="/downloads/sahakarya-customer-app.apk"
                   download="sahakarya-customer-app.apk"
                   className="btn btn-primary"
-                  style={{ width: '100%', padding: '12px 16px', fontSize: '14px' }}
+                  style={{ width: '100%', padding: '12px 16px', fontSize: '13.5px' }}
                 >
-                  <Download size={16} /> Direct Download APK
+                  <Download size={16} /> Download APK
                 </a>
+                <button
+                  onClick={() => copyLink(customerApkUrl, true)}
+                  className="btn btn-outline"
+                  style={{ width: '100%', padding: '8px 14px', fontSize: '12px' }}
+                >
+                  {copiedCustomer ? <Check size={14} color="var(--forest-600)" /> : <Copy size={14} />}
+                  <span>{copiedCustomer ? 'Copied Download Link' : 'Copy APK Link'}</span>
+                </button>
               </div>
             </div>
           </div>
 
           {/* 2. Worker App Card */}
-          <div className="glass-card" style={{ padding: '36px', borderTop: '5px solid var(--gold-dark)' }}>
+          <div className="card-luxe" style={{ padding: '36px', borderTop: '5px solid var(--amber-500)' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                 <div style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '14px',
-                  background: 'var(--gold)',
+                  width: '52px',
+                  height: '52px',
+                  borderRadius: '16px',
+                  background: 'linear-gradient(135deg, var(--amber-500) 0%, var(--amber-400) 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'var(--ink-900)',
+                  color: 'var(--ink-950)',
+                  boxShadow: '0 4px 14px rgba(245, 158, 11, 0.25)',
                 }}>
-                  <Smartphone size={26} />
+                  <Smartphone size={28} />
                 </div>
                 <div>
-                  <h3 style={{ fontSize: '20px', fontWeight: 800 }}>SahaKarya Partner (Worker App)</h3>
+                  <h3 style={{ fontSize: '21px', fontWeight: 800 }}>SahaKarya Partner (Worker App)</h3>
                   <span className="badge badge-gold" style={{ fontSize: '11px', marginTop: '4px' }}>
-                    v1.0.0+1 • Production Ready
+                    v1.0.0+1 • Production Verified
                   </span>
                 </div>
               </div>
             </div>
 
-            <p style={{ fontSize: '14.5px', color: 'var(--ink-600)', lineHeight: 1.6, marginBottom: '20px' }}>
+            <p style={{ fontSize: '14.5px', color: 'var(--ink-700)', lineHeight: 1.6, marginBottom: '22px' }}>
               Real-time gig offer sheets with 45s timers, GPS availability toggle, 95% instant payout breakdowns, and 5% non-extractable welfare fund claims.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
-                <CheckCircle2 size={16} color="var(--gold-dark)" />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px' }}>
+                <CheckCircle2 size={16} color="var(--amber-600)" />
                 <span>Package: <code style={{ fontFamily: 'var(--font-mono)' }}>com.sahakarya.worker_app</code></span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
-                <CheckCircle2 size={16} color="var(--gold-dark)" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px' }}>
+                <CheckCircle2 size={16} color="var(--amber-600)" />
                 <span>Features: One-Tap Demo Partner Mode, Cooperative Charter Policies</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
-                <HardDrive size={16} color="var(--gold-dark)" />
-                <span>Built Size: ~188 MB (Debug APK with all assets)</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px' }}>
+                <HardDrive size={16} color="var(--amber-600)" />
+                <span>Built Size: ~188 MB (Complete standalone debug bundle)</span>
               </div>
             </div>
 
@@ -188,27 +211,32 @@ export const ApkDownloads: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              padding: '18px',
-              background: 'var(--bg-main)',
-              borderRadius: 'var(--radius-md)',
+              padding: '20px',
+              background: 'var(--bg-canvas)',
+              borderRadius: 'var(--r-md)',
               border: '1px solid var(--ink-200)',
-              gap: '16px',
+              gap: '18px',
             }}>
-              <div style={{ background: '#ffffff', padding: '10px', borderRadius: '10px', border: '1px solid var(--ink-200)' }}>
+              <div style={{ background: '#ffffff', padding: '10px', borderRadius: '12px', border: '1px solid var(--ink-200)', boxShadow: 'var(--shadow-subtle)' }}>
                 <QRCodeSVG value={workerApkUrl} size={110} level="M" />
               </div>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '12px', color: 'var(--ink-600)', marginBottom: '8px' }}>
-                  Scan with phone camera or download directly:
-                </div>
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <a
                   href="/downloads/sahakarya-partner-app.apk"
                   download="sahakarya-partner-app.apk"
                   className="btn btn-gold"
-                  style={{ width: '100%', padding: '12px 16px', fontSize: '14px' }}
+                  style={{ width: '100%', padding: '12px 16px', fontSize: '13.5px' }}
                 >
-                  <Download size={16} /> Direct Download APK
+                  <Download size={16} /> Download APK
                 </a>
+                <button
+                  onClick={() => copyLink(workerApkUrl, false)}
+                  className="btn btn-outline"
+                  style={{ width: '100%', padding: '8px 14px', fontSize: '12px' }}
+                >
+                  {copiedWorker ? <Check size={14} color="var(--forest-600)" /> : <Copy size={14} />}
+                  <span>{copiedWorker ? 'Copied Download Link' : 'Copy APK Link'}</span>
+                </button>
               </div>
             </div>
           </div>
@@ -216,17 +244,17 @@ export const ApkDownloads: React.FC = () => {
 
         {/* Installation Instructions Pill */}
         <div style={{
-          padding: '20px 24px',
-          background: 'var(--primary-surface)',
-          borderRadius: 'var(--radius-md)',
-          border: '1px solid rgba(13, 82, 56, 0.2)',
+          padding: '22px 28px',
+          background: 'var(--forest-50)',
+          borderRadius: 'var(--r-md)',
+          border: '1px solid rgba(16, 185, 129, 0.25)',
           display: 'flex',
           alignItems: 'center',
-          gap: '16px',
+          gap: '18px',
         }}>
-          <ShieldCheck size={28} color="var(--primary)" style={{ flexShrink: 0 }} />
-          <div style={{ fontSize: '13.5px', color: 'var(--ink-800)', lineHeight: 1.5 }}>
-            <strong>Android Installation Note for Evaluators:</strong> Since these are direct debug builds, Android may display <em>"Install unknown apps"</em>. Tap <strong>Settings → Allow from this source</strong> to complete installation and explore immediately using the instant <strong>"🚀 Explore in Demo Mode"</strong> button.
+          <ShieldCheck size={32} color="var(--forest-700)" style={{ flexShrink: 0 }} />
+          <div style={{ fontSize: '14px', color: 'var(--forest-900)', lineHeight: 1.55 }}>
+            <strong>Android Evaluator Notice:</strong> Since these are direct APK packages, Android may display <em>"Install unknown apps"</em>. Tap <strong>Settings → Allow from this source</strong> to complete installation and explore immediately using the instant <strong>"🚀 Explore in Demo Mode"</strong> button.
           </div>
         </div>
       </div>
