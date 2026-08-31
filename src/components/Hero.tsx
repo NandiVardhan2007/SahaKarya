@@ -76,20 +76,30 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQrModal }) => {
         </p>
 
         {/* Dual Primary CTA Cluster */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '56px' }}>
-          <a href="#downloads" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '15.5px' }}>
-            <Download size={19} />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', flexWrap: 'wrap', marginBottom: '56px' }}>
+          <a href="#downloads" className="btn btn-primary" style={{ padding: '15px 30px', fontSize: '15px' }}>
+            <Download size={18} />
             <span>Download Working APKs</span>
           </a>
 
-          <button onClick={onOpenQrModal} className="btn btn-gold" style={{ padding: '16px 28px', fontSize: '15.5px' }}>
-            <Sparkles size={18} />
-            <span>Generate PPT QR Code</span>
+          <a
+            href="/downloads/SIH2026_PS26089_Presentation.pptx"
+            download="SIH2026_PS26089_Presentation.pptx"
+            className="btn btn-gold"
+            style={{ padding: '15px 26px', fontSize: '15px' }}
+          >
+            <Download size={18} />
+            <span>Download Pitch PPTX</span>
+          </a>
+
+          <button onClick={onOpenQrModal} className="btn btn-outline" style={{ padding: '15px 24px', fontSize: '15px' }}>
+            <Sparkles size={17} color="var(--amber-600)" />
+            <span>Generate PPT QR</span>
           </button>
 
-          <a href="#architecture" className="btn btn-outline" style={{ padding: '16px 28px', fontSize: '15.5px' }}>
-            <Layers size={18} />
-            <span>Explore System Design</span>
+          <a href="#architecture" className="btn btn-outline" style={{ padding: '15px 24px', fontSize: '15px' }}>
+            <Layers size={17} color="var(--forest-600)" />
+            <span>System Design</span>
           </a>
         </div>
 
