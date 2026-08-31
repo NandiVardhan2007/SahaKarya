@@ -76,7 +76,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQrModal }) => {
         </p>
 
         {/* Dual Primary CTA Cluster */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', flexWrap: 'wrap', marginBottom: '56px' }}>
+        <div className="btn-cluster" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', flexWrap: 'wrap', marginBottom: '56px' }}>
           <a href="#downloads" className="btn btn-primary" style={{ padding: '15px 30px', fontSize: '15px' }}>
             <Download size={18} />
             <span>Download Working APKs</span>

@@ -158,7 +158,7 @@ export const ArchitectureViewer: React.FC = () => {
               <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.6)', marginTop: '2px' }}>Flutter 3.x / OpenStreetMap</div>
             </div>
 
-            <div style={{ textAlign: 'center', color: 'var(--forest-400)' }}>
+            <div className="topology-arrow" style={{ textAlign: 'center', color: 'var(--forest-400)' }}>
               <ArrowRight size={22} style={{ display: 'inline-block' }} />
               <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-mono)' }}>REST / Socket.IO</div>
             </div>
@@ -169,7 +169,7 @@ export const ArchitectureViewer: React.FC = () => {
               <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.6)', marginTop: '2px' }}>Python 3.11 / Beanie ODM</div>
             </div>
 
-            <div style={{ textAlign: 'center', color: 'var(--forest-400)' }}>
+            <div className="topology-arrow" style={{ textAlign: 'center', color: 'var(--forest-400)' }}>
               <ArrowRight size={22} style={{ display: 'inline-block' }} />
               <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-mono)' }}>2dsphere / ML</div>
             </div>

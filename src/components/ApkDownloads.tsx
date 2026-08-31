@@ -127,7 +127,7 @@ export const ApkDownloads: React.FC = () => {
             </div>
 
             {/* QR Code and Direct Download Button */}
-            <div style={{
+            <div className="qr-download-row" style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -207,7 +207,7 @@ export const ApkDownloads: React.FC = () => {
             </div>
 
             {/* QR Code and Direct Download Button */}
-            <div style={{
+            <div className="qr-download-row" style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',

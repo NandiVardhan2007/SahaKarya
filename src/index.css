@@ -360,3 +360,109 @@ button {
 .float-gentle {
   animation: floatGentle 5s ease-in-out infinite;
 }
+
+/* ==========================================================================
+   Mobile & Tablet Responsiveness (@media queries)
+   ========================================================================== */
+
+/* Tablets (< 992px) */
+@media (max-width: 992px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+/* Mobile Devices (< 768px) */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-header .title {
+    font-size: 26px;
+  }
+
+  .section-header .desc {
+    font-size: 14.5px;
+  }
+
+  .card-luxe, .card-dark-luxe {
+    padding: 20px 16px;
+    border-radius: var(--r-md);
+  }
+
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  /* Navigation on mobile */
+  .nav-desktop-links {
+    display: none !important;
+  }
+
+  .nav-mobile-toggle {
+    display: flex !important;
+  }
+
+  /* Topology map arrows on mobile */
+  .topology-arrow {
+    transform: rotate(90deg);
+    margin: 8px auto;
+  }
+
+  /* Stepper mobile scroll */
+  .stepper-container {
+    gap: 6px;
+  }
+
+  .stepper-btn {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* QR Code download card on mobile */
+  .qr-download-row {
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  .qr-download-row .btn {
+    width: 100% !important;
+  }
+}
+
+/* Small Screens (< 480px) */
+@media (max-width: 480px) {
+  .btn-cluster {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-cluster .btn {
+    width: 100%;
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+}
+
