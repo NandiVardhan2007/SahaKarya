@@ -114,7 +114,7 @@ export const ApkDownloads: React.FC = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px' }}>
                 <CheckCircle2 size={16} color="var(--forest-600)" />
-                <span>Package: <code style={{ fontFamily: 'var(--font-mono)' }}>com.coopgig.customer_app</code></span>
+                <span>Package: <code style={{ fontFamily: 'var(--font-mono)' }}>com.sahakarya.customer_app</code></span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px' }}>
                 <CheckCircle2 size={16} color="var(--forest-600)" />
