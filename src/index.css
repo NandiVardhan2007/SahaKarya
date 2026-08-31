@@ -1,0 +1,275 @@
+/* ==========================================================================
+   SahaKarya Showcase & System Design Hub — Design System (Vanilla CSS)
+   ========================================================================== */
+
+:root {
+  /* Brand Core Palette */
+  --primary-deep: #062b1d;
+  --primary: #0d5238;
+  --primary-light: #137a54;
+  --primary-surface: #eaf4ef;
+  
+  --gold: #f5a623;
+  --gold-light: #f8b63b;
+  --gold-dark: #d98a12;
+  --gold-surface: #fef7ec;
+
+  --ink-900: #0a1612;
+  --ink-800: #12241e;
+  --ink-600: #42584f;
+  --ink-400: #7b948a;
+  --ink-200: #d6e2dc;
+  --ink-100: #f0f5f2;
+
+  --bg-main: #f8faf9;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f3f7f5;
+  --bg-glass: rgba(255, 255, 255, 0.85);
+
+  --accent-cyan: #0ea5e9;
+  --accent-purple: #8b5cf6;
+  --accent-emerald: #10b981;
+  --accent-rose: #f43f5e;
+
+  /* Elevation Shadows */
+  --shadow-sm: 0 2px 8px rgba(10, 22, 18, 0.04);
+  --shadow-md: 0 8px 24px rgba(10, 22, 18, 0.08);
+  --shadow-lg: 0 16px 40px rgba(10, 22, 18, 0.12);
+  --shadow-glow: 0 0 35px rgba(19, 122, 84, 0.25);
+  --shadow-gold: 0 0 35px rgba(245, 166, 35, 0.25);
+
+  /* Border Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-display: 'Sora', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-main);
+  color: var(--ink-800);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Typography Utility */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink-900);
+  line-height: 1.25;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Container */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+  background: linear-gradient(135deg, var(--primary-deep) 0%, var(--primary) 100%);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  color: var(--ink-900);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-outline {
+  background: #ffffff;
+  color: var(--ink-800);
+  border: 1.5px solid var(--ink-200);
+}
+
+.btn-outline:hover {
+  background: var(--bg-card-alt);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.badge-green {
+  background: var(--primary-surface);
+  color: var(--primary);
+  border: 1px solid rgba(13, 82, 56, 0.2);
+}
+
+.badge-gold {
+  background: var(--gold-surface);
+  color: var(--gold-dark);
+  border: 1px solid rgba(245, 166, 35, 0.3);
+}
+
+.badge-dark {
+  background: var(--ink-900);
+  color: #ffffff;
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(214, 226, 220, 0.8);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(19, 122, 84, 0.3);
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 56px auto;
+}
+
+.section-header .subtitle {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.section-header .title {
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+}
+
+.section-header .desc {
+  font-size: 16.5px;
+  color: var(--ink-600);
+  line-height: 1.6;
+}
+
+/* Keyframes Animations */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-float {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+/* Responsive grid */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Code Preview */
+pre, code {
+  font-family: var(--font-mono);
+}
+
+.code-block {
+  background: var(--ink-900);
+  color: #a7f3d0;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
