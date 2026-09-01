@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Binaries
-public/downloads/*.apk
+# (Release APKs under 100MB are tracked in public/downloads/ for direct evaluator download)

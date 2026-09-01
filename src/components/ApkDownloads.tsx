@@ -122,7 +122,7 @@ export const ApkDownloads: React.FC = () => {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px' }}>
                 <HardDrive size={16} color="var(--forest-600)" />
-                <span>Built Size: ~192 MB (Complete standalone debug bundle)</span>
+                <span>Built Size: ~61 MB (Optimized standalone release APK)</span>
               </div>
             </div>
 
@@ -202,7 +202,7 @@ export const ApkDownloads: React.FC = () => {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13px' }}>
                 <HardDrive size={16} color="var(--amber-600)" />
-                <span>Built Size: ~188 MB (Complete standalone debug bundle)</span>
+                <span>Built Size: ~59 MB (Optimized standalone release APK)</span>
               </div>
             </div>
 
