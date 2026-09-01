@@ -1,32 +1,27 @@
-# React + TypeScript + Vite
+# SahaKarya (सहकार्य) — SIH 2026 Showcase & Evaluator Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Interactive web presentation hub and evaluator testbed for **SahaKarya** (Problem Statement ID: 26089) — India's First Fair, Worker-Owned Hyperlocal Gig Cooperative Platform.
 
-Currently, two official plugins are available:
+## 🚀 Live Features
+- **Direct APK Downloads & QR Codes:** Instant scanning and download of standalone release APKs for both the **Customer App** (`com.sahakarya.customer_app`) and the **Worker App** (`com.sahakarya.worker_app`).
+- **Interactive End-to-End Workflow Simulator:** 8-stage interactive simulator visualizing the complete booking-to-payout lifecycle with 95% instant payout breakdowns and 5% welfare fund allocation.
+- **AI Forecasting & Fair Dispatch Simulator:** Interactive visualization of the embedded Random Forest ML model predicting localized service demand.
+- **System Architecture & Data Topology Map:** Full-stack topology showcasing FastAPI ASGI, PostgreSQL with PostGIS geo-indexing, WebSocket pub/sub brokers, and zero-commission escrow mechanics.
+- **Evaluator Slide Deck Download:** Direct download of the complete SIH 2026 PPT presentation deck.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📱 Mobile Applications (Flutter 3.47 / Dart 3.13)
+- **Customer App:** Real-time discovery, CartoDB Voyager live tracking maps, transparent tariff cards, in-trip messaging, and evaluation ratings.
+- **Worker Partner App:** Real-time gig offer sheets with 45s timers, GPS availability toggle, 95% instant payout breakdown, and 5% welfare fund claims.
 
-## React Compiler
+## 🛠️ Build & Run
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# Install dependencies
+npm install
 
-## Expanding the Oxlint configuration
+# Start local development server
+npm run dev
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+# Build production bundle (with release APKs copied to dist/downloads/)
+npm run build
 ```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
