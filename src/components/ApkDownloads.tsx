@@ -31,7 +31,7 @@ export const ApkDownloads: React.FC = () => {
           </div>
           <h2 className="title">Direct APK Downloads & Instant QR Codes</h2>
           <p className="desc">
-            Tested and verified on Android 8.0 through Android 16 (API 36). Scan with your phone camera or click direct download.
+            Tested on Android 8.0 through Android 16 (API 36). Scan with your phone camera or click direct download.
           </p>
         </div>
 
@@ -101,7 +101,7 @@ export const ApkDownloads: React.FC = () => {
                 <div>
                   <h3 style={{ fontSize: '21px', fontWeight: 800 }}>SahaKarya (Customer App)</h3>
                   <span className="badge badge-green" style={{ fontSize: '11px', marginTop: '4px' }}>
-                    v1.0.0+1 • Production Verified
+                    v1.0.0+1 • Release Ready
                   </span>
                 </div>
               </div>
@@ -181,7 +181,7 @@ export const ApkDownloads: React.FC = () => {
                 <div>
                   <h3 style={{ fontSize: '21px', fontWeight: 800 }}>SahaKarya Partner (Worker App)</h3>
                   <span className="badge badge-gold" style={{ fontSize: '11px', marginTop: '4px' }}>
-                    v1.0.0+1 • Production Verified
+                    v1.0.0+1 • Release Ready
                   </span>
                 </div>
               </div>

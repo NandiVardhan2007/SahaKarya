@@ -42,7 +42,7 @@ const STEPS: Step[] = [
     icon: Navigation,
     statusTag: 'Accepted / En Route',
     tagColor: 'badge-green',
-    customerView: 'Customer tracking screen opens immediately. Displays "Ramesh Kumar (Verified Electrician)" with 4.9★ rating. Live GPS route shows ~8 min ETA.',
+    customerView: 'Customer tracking screen opens immediately. Displays "Ramesh Kumar (Certified Electrician)" with 4.9★ rating. Live GPS route shows ~8 min ETA.',
     workerView: 'Incoming offer bottom sheet pops up with haptic vibration and 45s countdown. Worker taps "Accept Job" and clicks "Start Heading (En Route)".',
     adminAudit: 'Live Dispatch map pins worker to booking with Socket.IO room broadcast to federation monitors.',
     dataPayload: {
@@ -65,7 +65,7 @@ const STEPS: Step[] = [
     adminAudit: 'Timeline audit logs arrival and work commencement timestamps for transparency.',
     dataPayload: {
       service_status: "started",
-      otp_verified: true,
+      otp_validated: true,
       in_trip_chat_active: true,
       started_at: "2026-08-31T19:05:00Z"
     }
@@ -195,7 +195,7 @@ export const WorkflowSimulator: React.FC = () => {
               <span style={{ fontSize: '13px', fontWeight: 800, color: 'var(--gold-dark)', textTransform: 'uppercase' }}>
                 🤝 Partner App Flow
               </span>
-              <span className="badge badge-gold">Verified Partner</span>
+              <span className="badge badge-gold">Certified Partner</span>
             </div>
             <p style={{ fontSize: '14.5px', color: 'var(--ink-800)', lineHeight: 1.6 }}>
               {activeStep.workerView}

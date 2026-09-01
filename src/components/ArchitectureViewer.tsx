@@ -38,11 +38,11 @@ final bookingSocketProvider = Provider((ref) => {
     badge: 'Official Portal',
     icon: Monitor,
     tech: 'React 18 • TypeScript • Vite • Lucide • D3 / Recharts • Tailwind Tokens',
-    description: 'Dedicated web dashboard for Labour Cooperative Federation secretaries and NCCT administrators to manage verified worker rosters, monitor live geo-dispatch, oversee non-extractable welfare transactions, and review AI forecast demand.',
+    description: 'Dedicated web dashboard for Labour Cooperative Federation secretaries and NCCT administrators to manage registered worker rosters, monitor live geo-dispatch, oversee non-extractable welfare transactions, and review AI forecast demand.',
     highlights: [
       'Live Dispatch Map showing active in-flight worker coordinates and customer destinations',
       'Non-Extractable 5% Welfare Fund Audit Ledger with automated balance reconciliation',
-      'Worker Certification verification pipeline with document validation workflows',
+      'Worker certification onboarding pipeline with document validation workflows',
       'Interactive 7-day demand forecasting charts with regional seasonality toggles'
     ],
     codeSnippet: `// Live Federation Event Hook
@@ -83,12 +83,12 @@ async def get_nearby_workers(lat: float, lng: float, skill: str, radius_km: floa
       '2dsphere geospatial indexing on worker coordinates for sub-10ms proximity lookups',
       'ACID transactional guarantees on 5% welfare allocation and claim settlements',
       'Beanie ODM with type-safe Pydantic models and automatic index initialization',
-      'Idempotent automated seeding script with realistic 15+ verified worker clusters'
+      'Idempotent automated seeding script with realistic 15+ certified worker clusters'
     ],
     codeSnippet: `class Worker(Document):
     location: GeoPoint # GeoJSON Point [lng, lat]
     skills: List[str]
-    certification_status: str # "verified" | "pending"
+    certification_status: str # "certified" | "pending"
     welfare_balance: float # Non-extractable pool
     class Settings:
         indexes = [[("location", pymongo.GEOSPHERE)]]`
@@ -272,7 +272,7 @@ export const ArchitectureViewer: React.FC = () => {
                   Architecture Implementation Snippet
                 </span>
                 <span className="badge badge-green" style={{ fontSize: '11px' }}>
-                  <ShieldCheck size={12} /> Production Verified
+                  <ShieldCheck size={12} /> Architecture Tested
                 </span>
               </div>
 

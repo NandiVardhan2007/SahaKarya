@@ -152,7 +152,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQrModal }) => {
               100% Vetted
             </div>
             <div style={{ fontSize: '12.5px', color: 'var(--ink-500)', marginTop: '4px' }}>
-              Bulk roster verification through registered Labour Federations.
+              Bulk roster onboarding through registered Labour Federations.
             </div>
           </div>
 

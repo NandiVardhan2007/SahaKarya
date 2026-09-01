@@ -132,7 +132,7 @@ export const AIForecastingSection: React.FC = () => {
           <div className="glass-card" style={{ padding: '32px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
               <BarChart3 size={22} color="var(--gold-dark)" />
-              <h3 style={{ fontSize: '18px', fontWeight: 800 }}>Model Specifications & Verification</h3>
+              <h3 style={{ fontSize: '18px', fontWeight: 800 }}>Model Specifications & Performance Metrics</h3>
             </div>
 
             <div className="grid-2" style={{ gap: '16px', marginBottom: '24px' }}>
